@@ -1,0 +1,34 @@
+//zadanie1
+#include <iostream>
+
+bool treygol(int a, int b, int c) {
+    return (a + b > c) && (a + c > b) && (b + c > a);
+}
+
+void triangleType(int a, int b, int c) {
+    if (!treygol(a, b, c)) {
+        std::cout << "Это не треугольник.\n";
+        return;
+    }
+
+    if (a == b && b == c) {
+        std::cout << "Равносторонний треугольник.\n";
+    }
+    else if (a == b  b == c  a == c) {
+        std::cout << "Равнобедренный треугольник.\n";
+    }
+    else {
+        std::cout << "Разносторонний треугольник.\n";
+    }
+}
+
+int main() {
+    int a, b, c;
+    std::cout << "Введите стороны треугольника (a, b, c): ";
+    std::cin >> a >> b >> c;
+
+    triangleType(a, b, c);
+    return 0;
+}
+//zadanie2
+Доделаю
