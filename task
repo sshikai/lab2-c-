@@ -30,5 +30,215 @@ int main() {
     triangleType(a, b, c);
     return 0;
 }
+----------------------------------------------------------------------------------------------------
 //zadanie2
-Доделаю
+#include <iostream>
+#include <cmath>
+void Storoni(int a, int b, int c) {
+    // Сортировка сторон по возрастанию
+    if (a > b ) std::swap(a, b);
+    if (b > c) std::swap(a, b);
+    if (a > b ) std::swap(a, b);
+    
+    // Прверка типа углов
+     if (c * c == a * a + b * b) {
+        std::cout << "Прямоугольный треугольник.\n";
+    } else if (c * c > a * a + b * b) {
+        std::cout << "Тупоугольный треугольник.\n";
+    } else {
+        std::cout << "Остроугольный треугольник.\n";
+    }
+    
+}
+int main() {
+    int a, b, c;
+    std::cout << "Введите длины сторон треугольника a,b,c";
+    std::cin >> a >> b >> c;
+    
+    Storoni(a, b, c);
+    return 0;
+}
+-------------------------------------------------------------------------------------------------------
+//zadanie4
+#include <iostream>
+
+bool Triangle(int a, int b, int c) {
+    for (int x = 1; x < a; x++) {
+        for (int y = 1; y < b; y++) {
+            for (int z = 1; z < c; z++) {
+                if (x + y == a && y + z == b && x + z == c) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+int main() {
+    int a, b, c;
+    std::cout << "Введите стороны треугольника (a, b, c): ";
+    std::cin >> a >> b >> c;
+
+    if (Triangle(a, b, c)) {
+        std::cout << "Стороны могут образовать треугольник.\n";
+    } else {
+        std::cout << "Стороны не могут образовать треугольник.\n";
+    }
+
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------
+//zadanie6
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool can(int a,int b,int r,int s){
+   return (min(a,b) <= min(r,s)) && (max(a,b) <= max(r,s));
+}
+
+int main() {
+   int a,b,c,r,s;
+   cout << "Введите размеры кирпича (a,b,c): ";
+   cin >> a >> b >> c;
+
+   cout << "Введите размеры отверстия (r,s): ";
+   cin >> r >> s;
+
+   if(can(a,b,r,s) || can(a,c,r,s) || can(b,c,r,s)){
+       cout << "Кирпич пройдет через отверстие.\n";
+   }else{
+       cout << "Кирпич не пройдет через отверстие.\n";
+   }
+
+   return 0;
+}
+------------------------------------------------------------------------------------------------------------------
+//zadanie7
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+bool shar(int r,int p,int q){
+   return r <= min(p,q)/sqrt(2);
+}
+
+int main() {
+   int r,p,q;
+   cout << "Введите радиус шара: ";
+   cin >> r;
+
+   cout << "Введите диагонали ромба (p,q): ";
+   cin >> p >> q;
+
+   if(shar(r,p,q)){
+       cout << "Шар пройдет через ромбообразное отверстие." << endl;
+   }else{
+       cout << "Шар не пройдет через ромбообразное отверстие." << endl;
+   }
+
+   return 0;
+}
+---------------------------------------------------------------------------------------------------------------------
+//zadanie8
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool canFit(int A,int B,int C,int R,int S,int T){
+   int box[3] = {A,B,C};
+   int item[3] = {R,S,T};
+   
+   sort(box ,box + 3);
+   sort(item ,item + 3);
+
+   return box[0] >= item[0] && box[1] >= item[1] && box[2] >= item[2];
+}
+
+int main() {
+   int A,B,C,R,S,T;
+   cout << "Введите размеры коробки (A,B,C): ";
+   cin >> A >> B >> C;
+
+   cout << "Введите размеры посылки (R,S,T): ";
+   cin >> R >> S >> T;
+
+   if(canFit(A,B,C,R,S,T)){
+       cout << "Посылка поместится в коробку.\n";
+   }else{
+       cout << "Посылка не поместится в коробку.\n";
+   }
+
+   return 0;
+}
+-------------------------------------------------------------------------------------------------------------------------
+//zadanie9
+#include <iostream>
+using namespace std;
+
+void Multiples(int k,int l,int m){
+   if(k % l == 0){
+       cout << k << " кратно " << l << "\n";
+   }
+   if(l % k == 0){
+       cout << l << " кратно " << k << "\n";
+   }
+   if(k % m == 0){
+       cout << k << " кратно " << m << "\n";
+   }
+   if(m % k == 0){
+       cout << m << " кратно " << k << "\n";
+   }
+   if(l % m == 0){
+       cout << l << " кратно " << m << "\n";
+   }
+   if(m % l == 0){
+       cout << m << " кратно " << l << "\n";
+   }
+   else { cout << "Числа не кратные.\n"; 
+       
+   }
+}
+
+int main() {
+   int k,l,m;
+   cout << "Введите три целых числа (k,l,m): ";
+   cin >> k >> l >> m;
+
+   Multiples(k,l,m);
+   
+   return 0;
+}
+---------------------------------------------------------------------------------------------
+//zadanie10
+#include <iostream>
+using namespace std;
+
+bool Delenie(int number) {
+    int sum = 0;
+
+    while (number > 0) {
+        sum += number % 10; // добавляем последнюю цифру к сумме
+          number /= 10; // удаляем последнюю цифру
+    }
+
+    return sum % 3 == 0; // проверяем делимость суммы на 3
+}
+
+int main() {
+    int number;
+    
+    cout << "Введите трехзначное число: ";
+    cin >> number;
+
+    if(Delenie(number)){
+        cout << number << " делится на 3." << "\n";
+    }else{
+        cout << number << " не делится на 3." << "\n";
+    }
+
+    return 0;
+}
+
